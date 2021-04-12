@@ -3,6 +3,8 @@ from collections import Counter
 import os
 import math
 import numpy as np
+from importlib.resources import open_text
+from . import data
 
 
 FEAT_TYPES = ('aac', 'cksaap', 'tpc', 'dpc', 'dde', 'gaac', 'cksaagp', 'gtpc', 'gdpc', 'moran', 'geary', 'nmbroto',
@@ -113,10 +115,13 @@ def apaac(fastas, lambda_value=30, w=0.05, **kw):
         raise AssertionError('All sequences should have length larger than parameter lambda_value:' +
                              str(lambda_value + 1))
 
-    data_dir = os.path.dirname(os.path.realpath(__file__))
-    data_file = os.path.join(data_dir, 'data', 'PAAC.txt')
-    with open(data_file) as f:
-        records = f.readlines()
+    # data_dir = os.path.dirname(os.path.realpath(__file__))
+    # data_file = os.path.join(data_dir, 'data', 'PAAC.txt')
+
+    # with open(data_file) as f:
+    #     records = f.readlines()
+    records = open_text(data, "PAAC.txt").readlines()
+
     AA = ''.join(records[0].rstrip().split()[1:])
     AADict = {}
     for i in range(len(AA)):
