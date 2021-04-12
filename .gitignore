@@ -1,5 +1,5 @@
 scratch.py
-data/
+/data/
 **/.idea
 **/__pycache__
 .DS_Store
