@@ -1,0 +1,5 @@
+scratch.py
+data/
+**/.idea
+**/__pycache__
+.DS_Store
