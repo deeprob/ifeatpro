@@ -206,7 +206,6 @@ def cksaagp(fastas, gap=5, **kw):
 
     encodings = []
 
-
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
         code = [name]
@@ -248,6 +247,10 @@ def cksaap(fastas, gap=5, **kw):
 
     AA = kw['order'] if kw['order'] is not None else 'ACDEFGHIKLMNPQRSTVWY'
     encodings = []
+    aaPairs = []
+    for aa1 in AA:
+        for aa2 in AA:
+            aaPairs.append(aa1 + aa2)
 
     for i in fastas:
         name, sequence = i[0], i[1]
@@ -638,6 +641,7 @@ def dde(fastas, **kw):
     }
 
     encodings = []
+    diPeptides = [aa1 + aa2 for aa1 in AA for aa2 in AA]
 
     myTM = []
     for pair in diPeptides:
@@ -678,6 +682,7 @@ def dpc(fastas, **kw):
     """
     AA = kw['order'] if kw['order'] is not None else 'ACDEFGHIKLMNPQRSTVWY'
     encodings = []
+    diPeptides = [aa1 + aa2 for aa1 in AA for aa2 in AA]
 
     AADict = {}
     for i in range(len(AA)):
@@ -1290,6 +1295,7 @@ def tpc(fastas, **kw):
     """
     AA = kw['order'] if kw['order'] is not None else 'ACDEFGHIKLMNPQRSTVWY'
     encodings = []
+    triPeptides = [aa1 + aa2 + aa3 for aa1 in AA for aa2 in AA for aa3 in AA]
 
     AADict = {}
     for i in range(len(AA)):
