@@ -85,10 +85,6 @@ def aac(fastas, **kw):
     """
     AA = kw['order'] if kw['order'] is not None else 'ACDEFGHIKLMNPQRSTVWY'
     encodings = []
-    header = ['#']
-    for i in AA:
-        header.append(i)
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -140,13 +136,7 @@ def apaac(fastas, lambda_value=30, w=0.05, **kw):
         AAProperty1.append([(j - meanI) / fenmu for j in i])
 
     encodings = []
-    header = ['#']
-    for i in AA:
-        header.append('Pc1.' + i)
-    for j in range(1, lambda_value + 1):
-        for i in AAPropertyNames:
-            header.append('Pc2.' + i + '.' + str(j))
-    encodings.append(header)
+
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
         code = [name]
@@ -215,11 +205,7 @@ def cksaagp(fastas, gap=5, **kw):
             gPairIndex.append(key1 + '.' + key2)
 
     encodings = []
-    header = ['#']
-    for g in range(gap + 1):
-        for p in gPairIndex:
-            header.append(p + '.gap' + str(g))
-    encodings.append(header)
+
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -262,15 +248,7 @@ def cksaap(fastas, gap=5, **kw):
 
     AA = kw['order'] if kw['order'] is not None else 'ACDEFGHIKLMNPQRSTVWY'
     encodings = []
-    aaPairs = []
-    for aa1 in AA:
-        for aa2 in AA:
-            aaPairs.append(aa1 + aa2)
-    header = ['#']
-    for g in range(gap + 1):
-        for aa in aaPairs:
-            header.append(aa + '.gap' + str(g))
-    encodings.append(header)
+
     for i in fastas:
         name, sequence = i[0], i[1]
         code = [name]
@@ -365,11 +343,7 @@ def ctdc(fastas, **kw):
         'polarity', 'polarizability', 'charge', 'secondarystruct', 'solventaccess')
 
     encodings = []
-    header = ['#']
-    for p in property_var:
-        for g in range(1, len(groups) + 1):
-            header.append(p + '.G' + str(g))
-    encodings.append(header)
+
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
         code = [name]
@@ -470,12 +444,6 @@ def ctdd(fastas, **kw):
         'polarity', 'polarizability', 'charge', 'secondarystruct', 'solventaccess')
 
     encodings = []
-    header = ['#']
-    for p in property_var:
-        for g in ('1', '2', '3'):
-            for d in ['0', '25', '50', '75', '100']:
-                header.append(p + '.' + g + '.residue' + d)
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -547,11 +515,6 @@ def ctdt(fastas, **kw):
         'polarity', 'polarizability', 'charge', 'secondarystruct', 'solventaccess')
 
     encodings = []
-    header = ['#']
-    for p in property_var:
-        for tr in ('Tr1221', 'Tr1331', 'Tr2332'):
-            header.append(p + '.' + tr)
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -629,10 +592,6 @@ def ctriad(fastas, **kw):
     features = [f1 + '.' + f2 + '.' + f3 for f1 in myGroups for f2 in myGroups for f3 in myGroups]
 
     encodings = []
-    header = ['#']
-    for f in features:
-        header.append(f)
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -679,9 +638,6 @@ def dde(fastas, **kw):
     }
 
     encodings = []
-    diPeptides = [aa1 + aa2 for aa1 in AA for aa2 in AA]
-    header = ['#'] + diPeptides
-    encodings.append(header)
 
     myTM = []
     for pair in diPeptides:
@@ -722,9 +678,6 @@ def dpc(fastas, **kw):
     """
     AA = kw['order'] if kw['order'] is not None else 'ACDEFGHIKLMNPQRSTVWY'
     encodings = []
-    diPeptides = [aa1 + aa2 for aa1 in AA for aa2 in AA]
-    header = ['#'] + diPeptides
-    encodings.append(header)
 
     AADict = {}
     for i in range(len(AA)):
@@ -762,10 +715,6 @@ def gaac(fastas, **kw):
     groupKey = group.keys()
 
     encodings = []
-    header = ['#']
-    for key in groupKey:
-        header.append(key)
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -807,8 +756,6 @@ def gdpc(fastas, **kw):
             index[aa] = key
 
     encodings = []
-    header = ['#'] + dipeptide
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -886,11 +833,7 @@ def geary(fastas, props=('CIDH920105', 'BHAR880101', 'CHAM820101', 'CHAM820102',
         index[AA[i]] = i
 
     encodings = []
-    header = ['#']
-    for p in props:
-        for n in range(1, nlag + 1):
-            header.append(p + '.lag' + str(n))
-    encodings.append(header)
+
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -936,8 +879,6 @@ def gtpc(fastas, **kw):
             index[aa] = key
 
     encodings = []
-    header = ['#'] + triple
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -992,11 +933,6 @@ def ksctriad(fastas, gap=0, **kw):
     features = [f1 + '.' + f2 + '.' + f3 for f1 in myGroups for f2 in myGroups for f3 in myGroups]
 
     encodings = []
-    header = ['#']
-    for g in range(gap + 1):
-        for f in features:
-            header.append(f + '.gap' + str(g))
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -1053,11 +989,6 @@ def moran(fastas, props=('CIDH920105', 'BHAR880101', 'CHAM820101', 'CHAM820102',
         index[AA[i]] = i
 
     encodings = []
-    header = ['#']
-    for p in props:
-        for n in range(1, nlag + 1):
-            header.append(p + '.lag' + str(n))
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -1130,11 +1061,6 @@ def nmbroto(fastas, props=('CIDH920105', 'BHAR880101', 'CHAM820101', 'CHAM820102
         index[AA[i]] = i
 
     encodings = []
-    header = ['#']
-    for p in props:
-        for n in range(1, nlag + 1):
-            header.append(p + '.lag' + str(n))
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -1201,12 +1127,6 @@ def paac(fastas, lambda_value=30, w=0.05, **kw):
         AAProperty1.append([(j - meanI) / fenmu for j in i])
 
     encodings = []
-    header = ['#']
-    for aa in AA:
-        header.append('Xc1.' + aa)
-    for n in range(1, lambda_value + 1):
-        header.append('Xc2.lambda' + str(n))
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -1272,16 +1192,6 @@ def qsorder(fastas, nlag=30, w=0.1, **kw):
         (20, 20))
 
     encodings = []
-    header = ['#']
-    for aa in AA1:
-        header.append('Schneider.Xr.' + aa)
-    for aa in AA1:
-        header.append('Grantham.Xr.' + aa)
-    for n in range(1, nlag + 1):
-        header.append('Schneider.Xd.' + str(n))
-    for n in range(1, nlag + 1):
-        header.append('Grantham.Xd.' + str(n))
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -1355,12 +1265,6 @@ def socnumber(fastas, nlag=30, **kw):
         (20, 20))
 
     encodings = []
-    header = ['#']
-    for n in range(1, nlag + 1):
-        header.append('Schneider.lag' + str(n))
-    for n in range(1, nlag + 1):
-        header.append('gGrantham.lag' + str(n))
-    encodings.append(header)
 
     for i in fastas:
         name, sequence = i[0], re.sub('-', '', i[1])
@@ -1386,9 +1290,6 @@ def tpc(fastas, **kw):
     """
     AA = kw['order'] if kw['order'] is not None else 'ACDEFGHIKLMNPQRSTVWY'
     encodings = []
-    triPeptides = [aa1 + aa2 + aa3 for aa1 in AA for aa2 in AA for aa3 in AA]
-    header = ['#'] + triPeptides
-    encodings.append(header)
 
     AADict = {}
     for i in range(len(AA)):

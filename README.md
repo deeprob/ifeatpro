@@ -42,34 +42,37 @@ with open(fasta_file, 'w') as f:
 
 ## Getting all 21 feature encodings from protein sequences using ifeatpro 
 
+ifeatpro contains 21 features which are capable of numerically encoding protein sequences based on their physicochemical
+ properties. They are:
+
+1. aac
+2. apaac
+3. cksaagp
+4. cksaap
+5. ctdc
+6. ctdd
+7. ctdt
+8. ctriad
+9. dde
+10. dpc
+11. gaac
+12. gdpc
+13. geary
+14. gtpc
+15. ksctriad
+16. moran
+17. nmbroto
+18. paac
+19. qsorder
+20. socnumber
+21. tpc
+
 Using *get_all_features* function, an user can create all the 21 physicochemical encoding based feature extraction techniques provided by ifeatpro. The first argument of this function denotes the fasta file that contains protein sequences while the second argument denotes the output directory where the files will be stored as csv files. 
 
 
 ```python
 get_all_features(fasta_file, "./ifeatpro_data/")
 ```
-
-    Descriptor type: aac
-    Descriptor type: cksaap
-    Descriptor type: tpc
-    Descriptor type: dpc
-    Descriptor type: dde
-    Descriptor type: gaac
-    Descriptor type: cksaagp
-    Descriptor type: gtpc
-    Descriptor type: gdpc
-    Descriptor type: moran
-    Descriptor type: geary
-    Descriptor type: nmbroto
-    Descriptor type: ctdc
-    Descriptor type: ctdt
-    Descriptor type: ctdd
-    Descriptor type: ctriad
-    Descriptor type: ksctriad
-    Descriptor type: socnumber
-    Descriptor type: qsorder
-    Descriptor type: paac
-    Descriptor type: apaac
 
 
 ## Creating a single feature encoding using ifeatpro
@@ -84,13 +87,13 @@ ifeatpro_data directory, they can run the following command:
 get_feature(fasta_file, "aac", "ifeatpro_data/")
 ```
 
-    Descriptor type: aac
-
 # feature extraction techniques description
-**Will be added soon**
+
+To get a detailed description of the feature extraction techniques used in ifeatpro, please refer to the 
+Supplementary Document of the paper [link to be added soon]().  
 
 # similar modules to encode protein sequences
 Other modules that can be used to generate numerical encoding of protein sequences are:
 1. ngrampro [link](https://pypi.org/project/ngrampro/)
-2. pssmpro
+2. pssmpro [link](https://pypi.org/project/pssmpro/)
 
