@@ -1,3 +1,7 @@
+
+
+[![DOI](https://zenodo.org/badge/357030900.svg)](https://zenodo.org/badge/latestdoi/357030900)
+
 # ifeatpro (Physicochemical Feature Encoder for Protein Sequences)
 A python package that generates 21 numerically encoded feature representation for protein sequences based on their 
 physicochemical properties. 
